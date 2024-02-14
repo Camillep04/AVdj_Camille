@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Calibri', sans-serif;
+    }
+    h1{
+        color: white;
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    td {
+        color: white;
+    }
+    th {
+      background-color: #fff;
+    }
+</style>
+<div>
+    <h1>Liste des marque pages</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>url</th>
+            <th>commentaire</th>
+        </tr>
+        {% for marque in marque_page %}
+            <tr>
+                <td>{{ marque.id }}</td>
+                <td>{{ marque.url }}</td>
+                <td>{{ marque.commentaire }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
