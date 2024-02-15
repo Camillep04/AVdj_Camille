@@ -41,7 +41,7 @@
             <tr>
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.DateCreation|date }}</td>
-                <td>{{ marque.url }}</td>
+                <td><a href="{{path('app_marque_page_details', {'id': marque.id}) }}">{{marque.url}}</a></td>
                 <td>{{ marque.commentaire }}</td>
             </tr>
         {% endfor %}
