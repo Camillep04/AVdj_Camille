@@ -1,6 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
 <style>
     div {
         display: flex;
@@ -9,7 +6,7 @@
         font-family: 'Calibri', sans-serif;
     }
     h1{
-        color: white;
+        color: #000;
     }
     table {
       width: 80%;
@@ -22,7 +19,7 @@
       padding: 8px;
     }
     td {
-        color: white;
+        color: #000;
     }
     th {
       background-color: #fff;
@@ -32,20 +29,25 @@
     <h1>Liste des marque pages</h1>
     <table>
         <tr>
-            <th>id</th>
-            <th>Date</th>
-            <th>url</th>
-            <th>commentaire</th>
+            <th>Libellé</th>
+            <th>Valeur</th>
         </tr>
-        {% for marque in marque_page %}
             <tr>
-                <td>{{ marque.id }}</td>
-                <td>{{ marque.DateCreation|date }}</td>
-                <td>{{ marque.url }}</td>
-                <td>{{ marque.commentaire }}</td>
+                <td>id</td>
+                <td>{{ details.id }}</td>
             </tr>
-        {% endfor %}
+            <tr>
+                <td>date de création</td>
+                <td>{{ details.DateCreation|date }}</td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td>{{ details.url }}</td>
+            </tr>
+            <tr>
+                <td>commentaire</td>
+                <td>{{ details.commentaire }}</td>
+            </tr>
+        </tr>
     </table>
 </div>
-
-{% endblock %}
