@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MarquePageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,17 @@ class MarquePage
 
     #[ORM\Column(length: 255)]
     private ?string $commentaire = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mot_cles = null;
+
+    #[ORM\ManyToMany(targetEntity: MotCles::class, mappedBy: 'lien')]
+    private Collection $motCles;
+
+    public function __construct()
+    {
+        $this->motCles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +73,37 @@ class MarquePage
     public function setCommentaire(string $commentaire): static
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getMotCles(): ?string
+    {
+        return $this->mot_cles;
+    }
+
+    public function setMotCles(?string $mot_cles): static
+    {
+        $this->mot_cles = $mot_cles;
+
+        return $this;
+    }
+
+    public function addMotCle(MotCles $motCle): static
+    {
+        if (!$this->motCles->contains($motCle)) {
+            $this->motCles->add($motCle);
+            $motCle->addLien($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMotCle(MotCles $motCle): static
+    {
+        if ($this->motCles->removeElement($motCle)) {
+            $motCle->removeLien($this);
+        }
 
         return $this;
     }

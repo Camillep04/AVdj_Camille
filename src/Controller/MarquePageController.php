@@ -51,4 +51,19 @@ use Doctrine\ORM\EntityManagerInterface;
                 'details' => $details,
             ]);
         } 
+        
+        public function relationMotCle(int $id, EntityManagerInterface $entityManager): Response
+        {
+            $motcles = new MotCles();
+            $motcles->setMotCles("test de mot cle");
+            $marquepage = new MarquePage();
+            $marquepage->setDateCreation (new \DateTime());
+            $marquepage->setCommentaire("je test les mots cles ici");
+            $marquepage->setMotCles($motcles); // Mise en relation des deux objets
+            $entityManager->persist($motcles);
+            $entityManager->persist($marquepage);
+            $entityManager->flush();
+            return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
+
+        }
     }  
