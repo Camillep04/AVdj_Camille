@@ -35,8 +35,12 @@ use Doctrine\ORM\EntityManagerInterface;
             
             $motcles = new MotCles();
             $motcles->setMotCles("test de mot cle 2eme essai");
+            $motcles2 = new MotCles();
+            $motcles2->setMotCles("test de mot cle 4eme essai");
             $marquepage->addMotCle($motcles);
+            $marquepage->addMotCle($motcles2);
             $entityManager->persist($motcles);
+            $entityManager->persist($motcles2);
             $entityManager->persist($marquepage);
             $entityManager->flush();
             return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());

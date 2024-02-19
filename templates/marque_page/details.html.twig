@@ -50,9 +50,9 @@
             </tr>
             <tr>
                 <td>Mots cles</td>
-                {% for mc in details.MotCles %}
-                <td>{{ mc.MotCles }}</td>
-                {% endfor %}
+                <td>{% for mc in details.MotCles %}
+                {{ mc.MotCles }}
+                {% endfor %}</td>
             </tr>
             <tr><a href="{{path('app_marque_page_index') }}">Retour</a></tr>
         </tr>
