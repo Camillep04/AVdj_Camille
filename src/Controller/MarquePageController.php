@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\MarquePage;
+use App\Entity\MotCles;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -23,14 +24,19 @@ use Doctrine\ORM\EntityManagerInterface;
                 'marque_page' => $marque_pages,
             ]);
         }
-        #[Route("/marquepage/ajouter", name: "marquepage_ajouter")]
+        #[Route("/ajouter", name: "marquepage_ajouter")]
         public function ajouterMarquePage(EntityManagerInterface $entityManager): Response
         {
             $marquepage = new MarquePage();
-            $marquepage->setUrl("https://www.meteo.nc/");
+            $marquepage->setUrl("mot cle test 2");
 
             $marquepage->setDateCreation (new \DateTime());
-            $marquepage->setCommentaire("ouioui il pleut");
+            $marquepage->setCommentaire("nonnon il pleut pas");
+            
+            $motcles = new MotCles();
+            $motcles->setMotCles("test de mot cle 2eme essai");
+            $marquepage->addMotCle($motcles);
+            $entityManager->persist($motcles);
             $entityManager->persist($marquepage);
             $entityManager->flush();
             return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
@@ -52,18 +58,18 @@ use Doctrine\ORM\EntityManagerInterface;
             ]);
         } 
         
-        public function relationMotCle(int $id, EntityManagerInterface $entityManager): Response
-        {
-            $motcles = new MotCles();
-            $motcles->setMotCles("test de mot cle");
-            $marquepage = new MarquePage();
-            $marquepage->setDateCreation (new \DateTime());
-            $marquepage->setCommentaire("je test les mots cles ici");
-            $marquepage->setMotCles($motcles); // Mise en relation des deux objets
-            $entityManager->persist($motcles);
-            $entityManager->persist($marquepage);
-            $entityManager->flush();
-            return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
+        // public function relationMotCle(int $id, EntityManagerInterface $entityManager): Response
+        // {
+        //     $motcles = new MotCles();
+        //     $motcles->setMotCles("test de mot cle");
+        //     $marquepage = new MarquePage();
+        //     $marquepage->setDateCreation (new \DateTime());
+        //     $marquepage->setCommentaire("je test les mots cles ici");
+        //     $marquepage->setMotCles($motcles); // Mise en relation des deux objets
+        //     $entityManager->persist($motcles);
+        //     $entityManager->persist($marquepage);
+        //     $entityManager->flush();
+        //     return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
 
-        }
+        // }
     }  
