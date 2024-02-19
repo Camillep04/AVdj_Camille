@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
     class MarquePageController extends AbstractController
     {
 
-        #[Route('/', name: 'app_marque_page')]
+        #[Route('/', name: 'index')]
         public function index(EntityManagerInterface $entityManager): Response
         {
             $marque_pages = $entityManager->getRepository(MarquePage::class)->findAll();
@@ -57,19 +57,4 @@ use Doctrine\ORM\EntityManagerInterface;
                 'details' => $details,
             ]);
         } 
-        
-        // public function relationMotCle(int $id, EntityManagerInterface $entityManager): Response
-        // {
-        //     $motcles = new MotCles();
-        //     $motcles->setMotCles("test de mot cle");
-        //     $marquepage = new MarquePage();
-        //     $marquepage->setDateCreation (new \DateTime());
-        //     $marquepage->setCommentaire("je test les mots cles ici");
-        //     $marquepage->setMotCles($motcles); // Mise en relation des deux objets
-        //     $entityManager->persist($motcles);
-        //     $entityManager->persist($marquepage);
-        //     $entityManager->flush();
-        //     return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
-
-        // }
     }  
