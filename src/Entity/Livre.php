@@ -14,30 +14,21 @@ class Livre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $auteur = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'auteur')]
+    private ?Auteur $auteur = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $titre = null;
+
+    #[ORM\Column]
+    private ?int $page = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(string $auteur): static
-    {
-        $this->auteur = $auteur;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -52,14 +43,38 @@ class Livre
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getAuteur(): ?Auteur
     {
-        return $this->nom;
+        return $this->auteur;
     }
 
-    public function setNom(string $nom): static
+    public function setAuteur(?Auteur $auteur): static
     {
-        $this->nom = $nom;
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): static
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getPage(): ?int
+    {
+        return $this->page;
+    }
+
+    public function setPage(int $page): static
+    {
+        $this->page = $page;
 
         return $this;
     }

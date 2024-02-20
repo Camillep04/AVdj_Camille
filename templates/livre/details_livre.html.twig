@@ -40,22 +40,12 @@
                 <td>{{ detailslivre.id }}</td>
             </tr>
             <tr>
-                <td>Auteur</td>
-                <td>{{ detailslivre.auteur }}</td>
-            </tr>
-            <tr>
-                <td>Date</td>
-                
-            </tr>
-            <tr>
                 <td>Nom</td>
-                <td>{{ detailslivre.nom }}</td>
+                <td>{{ detailslivre.auteur.nom }}</td>
             </tr>
             <tr>
-                <td>Mots cles</td>
-                <td>{% for mcl in detailslivre.MotClesLivre %}
-                {{ mcl.MotClesLivre }}
-                {% endfor %}</td>
+                <td>Prenom</td>
+                <td>{{ detailslivre.auteur.prenom }}</td>
             </tr>
             <tr><a href="{{path('app_livre_index') }}">Retour</a></tr>
         </tr>

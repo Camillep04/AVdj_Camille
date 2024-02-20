@@ -26,20 +26,11 @@ class LivreController extends AbstractController
         public function ajouterLivre(EntityManagerInterface $entityManager): Response
         {
             $livre = new livre();
-            $livre->setAuteur("J.K Rowling");
-
             $livre->setDate (new \DateTime());
-            $livre->setNom("Harry Potter et la chambre des secrets");
+            $livre->setTitre("La passe mirroir");
+            $livre->setPage(500);
             
             $entityManager->persist($livre);
-            $motcleslivre = new MotClesLivre();
-            $motcleslivre->setMotCles("harry");
-            $motcleslivre2 = new MotClesLivre();
-            $motcleslivre2->setMotCles("dursley");
-            $livre->addMotCleLivre($motcleslivre);
-            $livre->addMotCleLivre($motcleslivre2);
-            $entityManager->persist($motcleslivre);
-            $entityManager->persist($motcleslivre2);
             $entityManager->flush();
             return new Response("Livre sauvegardé avec l'id ". $livre->getId());
         }

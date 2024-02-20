@@ -21,10 +21,12 @@
                 <ul>
                     <li><a href="{{path('app_marque_page_index')}}">Marque page</a></li>
                     <li><a href="{{path('app_livre_index')}}">Livres</a></li>
-                    <li><a href="#">Le cailloux</a></li>
+                    <li><a href="">Le cailloux</a></li>
                 </ul>
             </nav>
         </header>
+        {% block rubrique %}
+        {% endblock %}
         {% block principal %}
         {% endblock %}
         <footer>
