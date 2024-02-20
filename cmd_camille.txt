@@ -1,0 +1,21 @@
+création nouvelle table utilisteur :
+php bin/console make:entity utilisateur
+
+renseignement des colonnes login et password
+
+migration :
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+création nouvelle table MotCles :
+php bin/console make:entity Motcles
+
+renseignement des colonnes mot cles et lien (dans lien on spécifie que c'est une relation ManyToMany, la classe est marquePage et que le nom sera motCles
+
+migration :
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+
+comme j'ai fais des bêtises j'ai du refaire l'entité odnc la regenérer : 
+ php bin/console make:entity --regenerate  

@@ -1,35 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<style>
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: 'Calibri', sans-serif;
-    }
-    h1{
-        color: white;
-    }
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: center;
-      padding: 8px;
-    }
-    td {
-        color: white;
-    }
-    th {
-      background-color: #fff;
-    }
-</style>
+{% block principal %}
+
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
+
 <div>
-    <h1>Liste des marque pages</h1>
+    <h1 class="titre-nv2">Liste des marque pages</h1>
     <table>
         <tr>
             <th>id</th>
