@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
+
+<div>
+    <h1 class="titre-nv2">Liste des livres</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Auteur</th>
+            <th>Date</th>
+            <th>Nom du livre</th>
+        </tr>
+        {% for livres in livre %}
+            <tr>
+                <td>{{ livres.id }}</td>
+                <td>{{ livres.Auteur }}</td>
+                <td>{{ livres.DateCreation|date }}</td>
+                <td><a href="{{path('app_livres_details_livres', {'id': livres.id}) }}">{{livres.url}}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% block livre_nv_trois %}
+    {% endblock %}
+</div>
+
+{% endblock %}

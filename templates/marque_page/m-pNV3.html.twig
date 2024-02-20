@@ -1,13 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
-{% block principal %}
+{% block nv %}
 
 {% block stylesheets %}
 {% endblock %}
     <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
 
 <div>
-    <h1 class="titre-nv2">Liste des marque pages</h1>
     <table>
         <tr>
             <th>id</th>
@@ -24,8 +23,6 @@
             </tr>
         {% endfor %}
     </table>
-    {% block nv %}
-    {% endblock %}
 </div>
 
 {% endblock %}
