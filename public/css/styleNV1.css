@@ -97,4 +97,15 @@ nav > ul li:hover .sous{
 .deroulant > a::after{
     font-size: 12px;
 }
+.nav_caillou{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 /* menu déroulant fin */
+footer{
+    background-color: #d4b4bc;
+    color: #701023;
+    padding: 20px;
+    margin-top: 30px;
+}

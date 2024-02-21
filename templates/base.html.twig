@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{asset("poule.png")}}" />
+        <title>Camille et Symfony</title>
         
         {% block stylesheets %}
         {% endblock %}
@@ -21,20 +22,22 @@
                 <ul>
                     <li><a href="{{path('app_marque_page_index')}}">Marque page</a></li>
                     <li><a href="{{path('app_livre_index')}}">Livres</a></li>
-                    <li>
-                        <a href="{{path('app_caillou_index')}}" class="deroulant">Le cailloux</a>
-                        <ul>
-                            <li><a href="{{path('app_caillou_faune')}}" class="sous">Faune</a></li>
-                            <li><a href="{{path('app_caillou_flore')}}" class="sous">Flore</a></li>
+                    <li class="deroulant">
+                        <a href="{{path('app_caillou_index')}}">Le cailloux</a>
+                        <ul class="sous">
+                            <li><a href="{{path('app_caillou_faune')}}" class="nav_caillou">Faune</a></li>
+                            <li><a href="{{path('app_caillou_flore')}}" class="nav_caillou">Flore</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
         </header>
-        {% block rubrique %}
-        {% endblock %}
-        {% block principal %}
-        {% endblock %}
+        <main>
+            {% block rubrique %}
+            {% endblock %}
+            {% block principal %}
+            {% endblock %}
+        </main>
         <footer>
             <div>Tous les droits réservés à CAMILLE ! <b>2024</b></div>
         </footer>

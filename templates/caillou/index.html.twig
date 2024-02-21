@@ -4,12 +4,14 @@
 
 {% block stylesheets %}
 {% endblock %}
-    <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
+    <link rel="stylesheet" href="{{asset("css/styleNV2index.css")}}"/>
 
 <div>
     <h1 class="titre-nv2">Va dans faune et/ou flore</h1>
-    <a href="{{path('app_caillou_faune') }}" class="caillou_rubrique">Faune</a>
-    <a href="{{path('app_caillou_flore') }}">Flore</a>
+    <div class="caillou_rubrique">
+        <a class="caillou_rubrique_lien" href="{{path('app_caillou_faune') }}">Faune</a>
+        <a class="caillou_rubrique_lien" href="{{path('app_caillou_flore') }}">Flore</a>
+    </div>
 </div>
 
 {% endblock %}

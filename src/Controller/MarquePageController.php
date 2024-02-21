@@ -24,27 +24,27 @@ use Doctrine\ORM\EntityManagerInterface;
                 'marque_page' => $marque_pages,
             ]);
         }
-        #[Route("/ajouter", name: "marquepage_ajouter")]
-        public function ajouterMarquePage(EntityManagerInterface $entityManager): Response
-        {
-            $marquepage = new MarquePage();
-            $marquepage->setUrl("mot cle test 2");
+        // #[Route("/ajouter", name: "marquepage_ajouter")]
+        // public function ajouterMarquePage(EntityManagerInterface $entityManager): Response
+        // {
+        //     $marquepage = new MarquePage();
+        //     $marquepage->setUrl("mot cle test 2");
 
-            $marquepage->setDateCreation (new \DateTime());
-            $marquepage->setCommentaire("nonnon il pleut pas");
+        //     $marquepage->setDateCreation (new \DateTime());
+        //     $marquepage->setCommentaire("nonnon il pleut pas");
             
-            $motcles = new MotCles();
-            $motcles->setMotCles("test de mot cle 2eme essai");
-            $motcles2 = new MotCles();
-            $motcles2->setMotCles("test de mot cle 4eme essai");
-            $marquepage->addMotCle($motcles);
-            $marquepage->addMotCle($motcles2);
-            $entityManager->persist($motcles);
-            $entityManager->persist($motcles2);
-            $entityManager->persist($marquepage);
-            $entityManager->flush();
-            return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
-        }
+        //     $motcles = new MotCles();
+        //     $motcles->setMotCles("test de mot cle 2eme essai");
+        //     $motcles2 = new MotCles();
+        //     $motcles2->setMotCles("test de mot cle 4eme essai");
+        //     $marquepage->addMotCle($motcles);
+        //     $marquepage->addMotCle($motcles2);
+        //     $entityManager->persist($motcles);
+        //     $entityManager->persist($motcles2);
+        //     $entityManager->persist($marquepage);
+        //     $entityManager->flush();
+        //     return new Response("Marque page sauvegardé avec l'id ". $marquepage->getId());
+        // }
         #[Route("/details/{id<\d+>}", name: "details")]
         public function afficherDetails(int $id, EntityManagerInterface $entityManager): Response
         {

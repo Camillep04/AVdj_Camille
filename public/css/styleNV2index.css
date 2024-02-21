@@ -30,3 +30,21 @@ th {
   display: flex;
   flex-direction: row;
 }
+.caillou_rubrique_lien{
+  text-decoration: none;
+  background-color: #d4b4bc;
+  color: #701023;
+  padding: 10px;
+  margin: 30px;
+}
+.caillou_rubrique_lien:hover{
+  color: white;
+  border-bottom: 2px solid white;
+}
+.lien{
+  text-decoration: none;
+  color: #ef4429;
+}
+.lien:hover{
+  color: #701023;
+}

@@ -22,18 +22,18 @@ class LivreController extends AbstractController
         ]);
     }
 
-    #[Route("/ajouter", name: "livre_ajouter")]
-        public function ajouterLivre(EntityManagerInterface $entityManager): Response
-        {
-            $livre = new livre();
-            $livre->setDate (new \DateTime());
-            $livre->setTitre("La passe mirroir");
-            $livre->setPage(500);
+    // #[Route("/ajouter", name: "livre_ajouter")]
+    //     public function ajouterLivre(EntityManagerInterface $entityManager): Response
+    //     {
+    //         $livre = new livre();
+    //         $livre->setDate (new \DateTime());
+    //         $livre->setTitre("La passe mirroir");
+    //         $livre->setPage(500);
             
-            $entityManager->persist($livre);
-            $entityManager->flush();
-            return new Response("Livre sauvegardé avec l'id ". $livre->getId());
-        }
+    //         $entityManager->persist($livre);
+    //         $entityManager->flush();
+    //         return new Response("Livre sauvegardé avec l'id ". $livre->getId());
+    //     }
     #[Route("/detailslivre/{id<\d+>}", name: "detailslivre")]
         public function afficherDetailsLivre(int $id, EntityManagerInterface $entityManager): Response
         {

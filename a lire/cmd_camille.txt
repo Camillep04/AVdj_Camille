@@ -19,3 +19,13 @@ php bin/console doctrine:migrations:migrate
 
 comme j'ai fais des bêtises j'ai du refaire l'entité odnc la regenérer : 
  php bin/console make:entity --regenerate  
+
+Utilisation des fixtures : 
+- installation de fixtures
+composer req --dev orm-fixtures
+
+- creation du fixture : 
+php bin/console make:fixtures FixturesLivre
+
+- transfert des nouvelles données :
+php bin/console doctrine:fixtures:load

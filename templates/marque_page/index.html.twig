@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
 {% endblock %}
-    <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
+    <link rel="stylesheet" href="{{asset("css/styleNV2index.css")}}"/>
 
 <div>
     <h1 class="titre-nv2">Liste des marque pages</h1>
@@ -18,8 +18,8 @@
         {% for marque in marque_page %}
             <tr>
                 <td>{{ marque.id }}</td>
-                <td>{{ marque.DateCreation|date }}</td>
-                <td><a href="{{path('app_marque_page_details', {'id': marque.id}) }}">{{marque.url}}</a></td>
+                <td>{{ marque.DateCreation|date('d F Y') }}</td>
+                <td><a class="lien" href="{{path('app_marque_page_details', {'id': marque.id}) }}">{{marque.url}}</a></td>
                 <td>{{ marque.commentaire }}</td>
             </tr>
         {% endfor %}
