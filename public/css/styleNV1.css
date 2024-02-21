@@ -56,3 +56,45 @@ nav a:hover{
   margin: 0px 20px;
   height: 1500px;
 }
+
+/* menu déroulant */
+nav ul li{
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sous{
+    display: none;
+    background-color: #d4b4bc;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    left: 0;
+}
+nav > ul li:hover .sous{
+    display: block;
+}
+.sous li{
+    float: none;
+    width: 100%;
+    text-align: left;
+}
+.sous a{
+    padding: 20px;
+    border-bottom: 2px solid transparent;
+}
+.sous a:hover{
+    border-bottom: 2px solid white;
+    background-color: RGBa(200,200,200,0.1);
+}
+.deroulant > a::after{
+    font-size: 12px;
+}
+/* menu déroulant fin */

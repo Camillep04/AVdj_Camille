@@ -23,3 +23,10 @@ td {
 th {
   background-color: #fff;
 }
+.image{
+    width: 100%;
+}
+.caillou_rubrique{
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2.css")}}"/>
+
+<div>
+    <h1 class="titre-nv2">Liste de la faune du caillou</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Nom</th>
+            <th>Image</th>
+            <th>Description</th>
+        </tr>
+        {% for faunes in faune %}
+            <tr>
+                <td>{{ faunes.id }}</td>
+                <td>{{ faunes.Nom }}</td>
+                <td><img class="image" src="{{asset(faunes.Img) }}"/></td>
+                <td>{{ faunes.Description }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
