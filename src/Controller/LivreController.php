@@ -50,4 +50,35 @@ class LivreController extends AbstractController
                 'detailslivre' => $detailslivre,
             ]);
         } 
+
+    #[Route("/livre/recherche/livre-base", name: "livrebase")]
+    public function livreBase($livreBase, EntityManagerInterface $entityManager)
+    {
+        $nbLivres = $entityManager
+        ->getRepository(Livre::class)
+        ->findNbLivreBase($livreBase);
+        return $this->render('livre/index.html.twig', [
+            'nbLivres' => $nbLivres,
+        ]);
+    }
+    #[Route("/livre/recherche/livre-lettre", name: "livrelettre")]
+    public function livreLettre($livreLettre, EntityManagerInterface $entityManager)
+    {
+        $listeLivres = $entityManager
+        ->getRepository(Livre::class)
+        ->findLivreLettre($livreLettre);
+        return $this->render('livre/index.html.twig', [
+            'listeLivres' => $listeLivres,
+        ]);
+    }
+    #[Route("/livre/recherche/auteur", name: "auteur")]
+    public function auteur($auteur, EntityManagerInterface $entityManager)
+    {
+        $livreAuteur = $entityManager
+        ->getRepository(Livre::class)
+        ->findAuteur($auteur);
+        return $this->render('livre/index.html.twig', [
+            'livreAuteur' => $livreAuteur,
+        ]);
+    }
 }

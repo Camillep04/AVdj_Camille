@@ -36,6 +36,41 @@ class LivreRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findNbLivreBase($livreBase): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+        SELECT COUNT (*) FROM `livre` 
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['livreBase' => $livreBase]);
+        // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
+        return $stmt->fetchAll();
+    }
+    public function findLivreLettre($livreLettre): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+        SELECT * FROM `livre` WHERE `titre` like "L%"
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['livreLettre' => $livreLettre]);
+        // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
+        return $stmt->fetchAll();
+    }
+
+    public function findAuteur($auteur): array
+        {
+            $conn = $this->getEntityManager()->getConnection();
+            $sql = '
+            SELECT auteur.nom, auteur.prenom FROM `auteur` INNER JOIN `livre` ON auteur.id = livre.auteur_id > 2
+            ';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['auteur' => $auteur]);
+            // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
+            return $stmt->fetchAll();
+        }
+        
 //    public function findOneBySomeField($value): ?Livre
 //    {
 //        return $this->createQueryBuilder('l')
