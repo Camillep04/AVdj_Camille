@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Calibri', sans-serif;
+    }
+    h1{
+        color: #000;
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    td {
+        color: #000;
+    }
+    th {
+      background-color: #fff;
+    }
+</style>
+<div>
+    <h1>Il y a {{ nbLivres }} livre(s)</h1>
+    <table>
+        </tr>
+            <tr><a class="lien" href="{{path('app_livre_index') }}">Retour</a></tr>
+        </tr>
+    </table>
+</div>
+{% endblock %}

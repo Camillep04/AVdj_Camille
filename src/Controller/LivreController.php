@@ -51,33 +51,34 @@ class LivreController extends AbstractController
             ]);
         } 
 
-    #[Route("/livre/recherche/livre-base", name: "livrebase")]
-    public function livreBase($livreBase, EntityManagerInterface $entityManager)
+    #[Route("/recherche/livre-base", name: "livrebase")]
+    public function livreBase(EntityManagerInterface $entityManager)
     {
         $nbLivres = $entityManager
         ->getRepository(Livre::class)
-        ->findNbLivreBase($livreBase);
-        return $this->render('livre/index.html.twig', [
+        ->findNbLivreBase();
+        return $this->render('livre/requete_livre_base.html.twig', [
             'nbLivres' => $nbLivres,
         ]);
     }
-    #[Route("/livre/recherche/livre-lettre", name: "livrelettre")]
-    public function livreLettre($livreLettre, EntityManagerInterface $entityManager)
+    #[Route("/recherche/livre-lettre/{lettre}", name: "livrelettre")]
+    public function livreLettre($lettre, EntityManagerInterface $entityManager)
     {
         $listeLivres = $entityManager
         ->getRepository(Livre::class)
-        ->findLivreLettre($livreLettre);
-        return $this->render('livre/index.html.twig', [
+        ->findLivreLettre($lettre);
+        return $this->render('livre/requete_livre_lettre.html.twig', [
             'listeLivres' => $listeLivres,
         ]);
     }
-    #[Route("/livre/recherche/auteur", name: "auteur")]
-    public function auteur($auteur, EntityManagerInterface $entityManager)
+
+    #[Route("/recherche/auteur/{nbLivre}", name: "auteur")]
+    public function auteur($nbLivre, EntityManagerInterface $entityManager)
     {
         $livreAuteur = $entityManager
         ->getRepository(Livre::class)
-        ->findAuteur($auteur);
-        return $this->render('livre/index.html.twig', [
+        ->findAuteur($nbLivre);
+        return $this->render('livre/requete_livre_nbLivre.html.twig', [
             'livreAuteur' => $livreAuteur,
         ]);
     }

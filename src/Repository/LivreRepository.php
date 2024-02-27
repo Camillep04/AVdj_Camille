@@ -36,39 +36,43 @@ class LivreRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findNbLivreBase($livreBase): array
+    public function findNbLivreBase()
     {
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = '
-        SELECT COUNT (*) FROM `livre` 
-        ';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['livreBase' => $livreBase]);
-        // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
-        return $stmt->fetchAll();
-    }
-    public function findLivreLettre($livreLettre): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = '
-        SELECT * FROM `livre` WHERE `titre` like "L%"
-        ';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['livreLettre' => $livreLettre]);
-        // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
-        return $stmt->fetchAll();
+        $entityManager = $this->getEntityManager();
+
+        $qry = $entityManager->createQuery(
+            "select count(l) as nb
+            from App\Entity\Livre l"
+        );
+
+        return $qry->getResult()[0]["nb"];
     }
 
-    public function findAuteur($auteur): array
+    public function findLivreLettre(string $lettre): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $qry = $entityManager->createQuery(
+            "select l
+            from App\Entity\Livre l
+            where l.titre like :lettre
+            order by l.titre"
+        )->setParameter("lettre", $lettre."%");
+
+        return $qry->getResult();
+    } 
+    
+    public function findAuteur($nbLivre): array
         {
-            $conn = $this->getEntityManager()->getConnection();
-            $sql = '
-            SELECT auteur.nom, auteur.prenom FROM `auteur` INNER JOIN `livre` ON auteur.id = livre.auteur_id > 2
-            ';
-            $stmt = $conn->prepare($sql);
-            $stmt->execute(['auteur' => $auteur]);
-            // retourne un tableau de tableaux (i.e. un ensemble de données brutes)
-            return $stmt->fetchAll();
+            $entityManager = $this->getEntityManager();
+            $query = $entityManager->createQuery(
+                    'SELECT a as auteur, count(l) AS NbLivres
+                    FROM App\Entity\Auteur a 
+                    JOIN a.auteur l 
+                    GROUP BY a.id
+                    HAVING NbLivres > :nbLivre'
+                )->setParameter('nbLivre', $nbLivre);
+            return $query->getResult();
         }
         
 //    public function findOneBySomeField($value): ?Livre
