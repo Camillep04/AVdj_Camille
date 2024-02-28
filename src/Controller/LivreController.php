@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Livre;
+use App\Entity\Auteur;
 use App\Entity\MotClesLivre;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\LivreType;
+use App\Form\Type\AuteurType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -112,6 +114,35 @@ class LivreController extends AbstractController
 
     #[Route('/succes', name: 'livre_ajout_succes')]
     public function succes(): Response
+    {
+        return $this->render('livre/ajout_succes.html.twig');
+    }
+    
+    #[Route("/ajout-auteur", name:"auteur_ajout")]
+    public function ajoutAuteur(Request $request, ManagerRegistry $doctrine)
+    {
+        // Création d’un objet Auteur vierge
+        $auteur = new Auteur();
+        $form = $this->createForm(AuteurType::class, $auteur);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() : pour récupérer les données
+            // Les données sont déjà stockées dans la variable d’origine
+            // $auteur = $form->getData();
+            // ... Effectuer le/les traitements(s) à réaliser
+            // Par exemple :
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($auteur);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_livre_auteur_ajout_succes');
+        }
+    return $this->render('livre/ajout.html.twig', [
+        'form' => $form,
+    ]);
+    }
+
+    #[Route('/succes-auteur', name: 'auteur_ajout_succes')]
+    public function succesAuteur(): Response
     {
         return $this->render('livre/ajout_succes.html.twig');
     }
