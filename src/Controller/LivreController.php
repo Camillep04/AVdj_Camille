@@ -13,11 +13,13 @@ use App\Form\Type\LivreType;
 use App\Form\Type\AuteurType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
-
+use App\Repository\AuteurRepository;
+use App\Repository\LivreRepository;
 
 #[Route("/livre", requirements: ["_locale" => "en|es|fr"], name: "app_livre_")]
 class LivreController extends AbstractController
 {
+    // page accueil de livre
     #[Route('/', name: 'index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -40,6 +42,8 @@ class LivreController extends AbstractController
     //         $entityManager->flush();
     //         return new Response("Livre sauvegardé avec l'id ". $livre->getId());
     //     }
+
+    // affiche les details de livre
     #[Route("/detailslivre/{id<\d+>}", name: "detailslivre")]
         public function afficherDetailsLivre(int $id, EntityManagerInterface $entityManager): Response
         {
@@ -57,6 +61,7 @@ class LivreController extends AbstractController
             ]);
         } 
 
+    // requete pour afficher le nombre de livre en base
     #[Route("/recherche/livre-base", name: "livrebase")]
     public function livreBase(EntityManagerInterface $entityManager)
     {
@@ -67,17 +72,20 @@ class LivreController extends AbstractController
             'nbLivres' => $nbLivres,
         ]);
     }
+
+    // requete pour afficher les livre dont la lettre commence par ...
     #[Route("/recherche/livre-lettre/{lettre}", name: "livrelettre")]
     public function livreLettre($lettre, EntityManagerInterface $entityManager)
     {
-        $listeLivres = $entityManager
+        $listeLivre = $entityManager
         ->getRepository(Livre::class)
         ->findLivreLettre($lettre);
         return $this->render('livre/requete_livre_lettre.html.twig', [
-            'listeLivres' => $listeLivres,
+            'listeLivre' => $listeLivre,
         ]);
     }
 
+    // requete pour afficher les nom, prenom des auteurs qui ont écrit plus de ... livre(s)
     #[Route("/recherche/auteur/{nbLivre}", name: "auteur")]
     public function auteur($nbLivre, EntityManagerInterface $entityManager)
     {
@@ -89,6 +97,7 @@ class LivreController extends AbstractController
         ]);
     }
 
+    // ajouter un livre via un formulaire
     #[Route("/ajout", name:"livre_ajout")]
     public function ajout(Request $request, ManagerRegistry $doctrine)
     {
@@ -118,6 +127,7 @@ class LivreController extends AbstractController
         return $this->render('livre/ajout_succes.html.twig');
     }
     
+    // ajouter un auteur via un formulaire
     #[Route("/ajout-auteur", name:"auteur_ajout")]
     public function ajoutAuteur(Request $request, ManagerRegistry $doctrine)
     {
@@ -145,5 +155,55 @@ class LivreController extends AbstractController
     public function succesAuteur(): Response
     {
         return $this->render('livre/ajout_succes.html.twig');
+    }
+
+    //modifier nom prenom auteur via un formulaire pré rempli
+    #[Route('/auteur/modifier/{id}', name: 'auteur_modifier')]
+    public function modifierAuteur(int $id, Request $request, EntityManagerInterface $entityManager, AuteurRepository $auteurRepository): Response
+    {
+        $auteur = $auteurRepository->find($id);
+
+        if (!$auteur) {
+            throw $this->createNotFoundException("Auteur non trouvé avec l'identifiant : " . $id);
+        }
+
+        $form = $this->createForm(AuteurType::class, $auteur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_livre_auteur_ajout_succes', ['id' => $id]);
+        }
+
+        return $this->render('livre/modifier.html.twig', [
+            'form' => $form->createView(),
+            'auteur' => $auteur,
+        ]);
+    }
+
+    //modifier titre, page, date livre via un formulaire pré rempli
+    #[Route('/modifier/{id}', name: 'livre_modifier')]
+    public function modifierLivre(int $id, Request $request, EntityManagerInterface $entityManager, LivreRepository $livreRepository): Response
+    {
+        $livre = $livreRepository->find($id);
+
+        if (!$livre) {
+            throw $this->createNotFoundException("Livre non trouvé avec l'identifiant : " . $id);
+        }
+
+        $form = $this->createForm(LivreType::class, $livre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_livre_livre_ajout_succes', ['id' => $id]);
+        }
+
+        return $this->render('livre/modifier.html.twig', [
+            'form' => $form->createView(),
+            'livre' => $livre,
+        ]);
     }
 }

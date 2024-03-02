@@ -23,3 +23,13 @@ td {
 th {
   background-color: #fff;
 }
+.caillou_rubrique_lien{
+  text-decoration: none;
+  background-color: #d4b4bc;
+  color: #701023;
+  padding: 10px;
+  margin-top: 20px;
+}
+.caillou_rubrique_lien:hover{
+  color: white;
+}

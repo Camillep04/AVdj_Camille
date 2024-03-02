@@ -8,33 +8,25 @@
     <h1>Details d'un marque page</h1>
     <table>
         <tr>
-            <th>Libellé</th>
-            <th>Valeur</th>
+            <th>id</th>
+            <th>date de création</th>
+            <th>url</th>
+            <th>commentaire</th>
+            <th>motd clés</th>
         </tr>
             <tr>
-                <td>id</td>
                 <td>{{ details.id }}</td>
-            </tr>
-            <tr>
-                <td>date de création</td>
                 <td>{{ details.DateCreation|date }}</td>
-            </tr>
-            <tr>
-                <td>url</td>
                 <td>{{ details.url }}</td>
-            </tr>
-            <tr>
-                <td>commentaire</td>
                 <td>{{ details.commentaire }}</td>
+                <td>
+                    {% for mc in details.MotCles %}
+                        {{ mc.MotCles }}
+                    {% endfor %}
+                </td>
             </tr>
-            <tr>
-                <td>Mots cles</td>
-                <td>{% for mc in details.MotCles %}
-                {{ mc.MotCles }}
-                {% endfor %}</td>
-            </tr>
-            <tr><a class="lien" href="{{path('app_marque_page_index') }}">Retour</a></tr>
         </tr>
     </table>
+    <div><a class="lien caillou_rubrique_lien" href="{{path('app_marque_page_index') }}">Retour</a></div>
 </div>
 {% endblock %}

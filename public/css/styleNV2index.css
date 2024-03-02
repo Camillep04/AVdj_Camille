@@ -39,7 +39,6 @@ th {
 }
 .caillou_rubrique_lien:hover{
   color: white;
-  border-bottom: 2px solid white;
 }
 .lien{
   text-decoration: none;

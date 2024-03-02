@@ -1,56 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block principal %}
-<style>
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: 'Calibri', sans-serif;
-    }
-    h1{
-        color: #000;
-    }
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: center;
-      padding: 8px;
-    }
-    td {
-        color: #000;
-    }
-    th {
-      background-color: #fff;
-    }
-</style>
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2details.css")}}"/>
 <div>
     <h1>Livre dont le titre commence par une lettre</h1>
     <table>
         <tr>
-            <th>Libellé</th>
-            <th>Valeur</th>
+            <th>Titre</th>
+            <th>Nom</th>
+            <th>Prenom</th>
         </tr>
-        {% for listeLivresLettre in listeLivres %}
+        {% for listeLivreLettres in listeLivre %}
             <tr>
-                <td>titre</td>
-                <td>{{ listeLivresLettre.titre }}</td>
-            </tr>
-            <tr>
-                <td>Nom</td>
-                <td>{{ listeLivresLettre.auteur.nom }}</td>
-            </tr>
-            <tr>
-                <td>Prenom</td>
-                <td>{{ listeLivresLettre.auteur.prenom }}</td>
+                <td>{{ listeLivreLettres.titre }}</td>
+                <td>{{ listeLivreLettres.auteur.nom }}</td>
+                <td>{{ listeLivreLettres.auteur.prenom }}</td>
             </tr>
         {% endfor %}
-            <tr><a class="lien" href="{{path('app_livre_index') }}">Retour</a></tr>
         </tr>
     </table>
+    <div><a class="lien caillou_rubrique_lien" href="{{path('app_livre_index') }}">Retour</a></div>
 </div>
 {% endblock %}

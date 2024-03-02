@@ -1,0 +1,42 @@
+#auteur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#livre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input{
+    margin: 10px;
+}
+button{
+    text-decoration: none;
+    background-color: #d4b4bc;
+    color: #701023;
+    padding: 10px;
+    margin-top: 20px;
+}
+button:hover{
+    color: white;
+}
+p{
+    display: flex;
+    justify-content: center;
+}
+.caillou_rubrique_lien{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    background-color: #d4b4bc;
+    color: #701023;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .caillou_rubrique_lien:hover{
+    color: white;
+  }
