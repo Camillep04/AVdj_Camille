@@ -8,16 +8,12 @@
     <h1>Livre dont le titre commence par une lettre</h1>
     <table>
         <tr>
-            <th>Libellé</th>
-            <th>Valeur</th>
+            <th>Nom</th>
+            <th>Prenom</th>
         </tr>
         {% for livreAuteurs in livreAuteur %}
             <tr>
-                <td>Nom</td>
                 <td>{{ livreAuteurs.auteur.nom }}</td>
-            </tr>
-            <tr>
-                <td>Prenom</td>
                 <td>{{ livreAuteurs.auteur.prenom }}</td>
             </tr>
         {% endfor %}

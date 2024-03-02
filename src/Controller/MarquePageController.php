@@ -61,4 +61,9 @@ use Doctrine\ORM\EntityManagerInterface;
                 'details' => $details,
             ]);
         } 
+        #[Route("/rubrique", name: "rubrique")]
+        public function afficherRubrique(EntityManagerInterface $entityManager): Response
+        {
+            return $this->render('marque_page/rubrique.html.twig');
+        } 
     }  
