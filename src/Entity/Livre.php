@@ -20,6 +20,8 @@ class Livre
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'auteur')]
+    #[assert\Type(type:"App\Entity\Auteur")]
+    #[assert\Valid]
     private ?Auteur $auteur = null;
 
     #[ORM\Column(length: 255)]

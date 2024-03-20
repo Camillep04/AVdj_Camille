@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2details.css")}}"/>
+
+<div>
+    <h1>Details d'un livre</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Pays</th>
+            <th>Ville</th>
+            <th>Rue</th>
+            <th>Code postal</th>
+        </tr>
+        <tr>
+            <td>{{ detailsemploye.id }}</td>
+            <td>{{ detailsemploye.adresse.pays }}</td>
+            <td>{{ detailsemploye.adresse.ville }}</td>
+            <td>{{ detailsemploye.adresse.rue }}</td>
+            <td>{{ detailsemploye.adresse.codePostal }}</td>
+        </tr>
+    </table>
+    <div><a class="lien caillou_rubrique_lien" href="{{path('app_livre_index') }}">Retour</a></div>
+</div>
+{% endblock %}

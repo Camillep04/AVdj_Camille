@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2index.css")}}"/>
+
+<div>
+    <h1 class="titre-nv2">Liste des employes</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Statut</th>
+        </tr>
+        {% for employes in employe %}
+            <tr>
+                <td>{{ employes.id }}</td>
+                <td>{{ employes.nom}}</td>
+                <td>{{ employes.prenom}}</td>
+                <td><a class="lien" href="{{path('app_employe_detailsemploye', {'id': employes.id}) }}">{{employes.statut}}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% block livre_nv_trois %}
+    {% endblock %}
+</div>
+
+{% endblock %}
