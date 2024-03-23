@@ -12,11 +12,11 @@
             <th>date de création</th>
             <th>url</th>
             <th>commentaire</th>
-            <th>motd clés</th>
+            <th>mots clés</th>
         </tr>
             <tr>
                 <td>{{ details.id }}</td>
-                <td>{{ details.DateCreation|date }}</td>
+                <td>{{ details.DateCreation|date('d F Y') }}</td>
                 <td>{{ details.url }}</td>
                 <td>{{ details.commentaire }}</td>
                 <td>
