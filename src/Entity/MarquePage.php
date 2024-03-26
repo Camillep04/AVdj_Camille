@@ -26,7 +26,6 @@ class MarquePage
     private ?string $commentaire = null;
 
     #[ORM\ManyToMany(targetEntity: MotCles::class, mappedBy: 'lien')]
-    #[ORM\ManyToOne(inversedBy: 'motCles')]
     #[assert\Type(type:"App\Entity\MotCles")]
     #[assert\Valid]
     private Collection $motCles;

@@ -23,15 +23,14 @@ class MarquePageType extends AbstractType
                 ->add('url', TextType::class)
                 ->add('commentaire', TextType::class)
                 ->add('motCles', EntityType::class, [
-                    'class' => MotCles::class, // Spécifiez la classe d'entité MotCles
-                    'choice_label' => 'mot_cles', // ou tout autre attribut que vous souhaitez afficher dans la liste déroulante
+                    'class' => MotCles::class, 
+                    'choice_label' => 'mot_cles',
                     'multiple' => true, 
                     'expanded' => true
                 ])
 
                 ->add('valider', SubmitType::class);
             }
-                // Ici, on défini de manière explicite le « data_class »
         public function configureOptions(OptionsResolver $resolver)
         {
             $resolver->setDefaults([
