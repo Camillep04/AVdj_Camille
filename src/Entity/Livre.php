@@ -6,6 +6,7 @@ use App\Repository\LivreRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
@@ -79,6 +80,25 @@ class Livre
     public function setPage(int $page): static
     {
         $this->page = $page;
+
+        return $this;
+    }
+
+ /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * 
+     * @Gedmo\Slug(fields={"nom"})
+     */
+    private $slug;
+    
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

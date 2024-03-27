@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\MarquePage;
 use App\Entity\MotCles;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
 use App\Form\Type\MarquePageType;
 use App\Form\Type\MotClesType;
 use App\Repository\MarquePageRepository;
@@ -114,7 +115,7 @@ use Symfony\Component\HttpFoundation\Request;
                 return $this->redirectToRoute('app_marquePage_ajout_succes', ['id' => $id]);
             }
 
-            return $this->render('marquePage/modifier.html.twig', [
+            return $this->render('marque_page/modifier.html.twig', [
                 'form' => $form->createView(),
                 'marquePage' => $marquePage,
             ]);

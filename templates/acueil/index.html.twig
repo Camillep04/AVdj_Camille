@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block principal %}
+
+{% block stylesheets %}
+{% endblock %}
+    <link rel="stylesheet" href="{{asset("css/styleNV2index.css")}}"/>
+
+<div>
+    <h1 class="titre-nv2">Bienvenue sur "Camille et Symfony en cours"</h1>
+    <p>Faire un tour sur le site -> pour cela il faut se balader dans la navigation !! 😀</p>
+
+    {% block livre_nv_trois %}
+    {% endblock %}
+</div>
+
+{% endblock %}
